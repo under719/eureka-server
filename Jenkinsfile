@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         REGISTRY = "k8s-vga-worker1:5000"
-        IMAGE_NAME = "demo-img-team5-eureka-server"
+        IMAGE_NAME = "img-team5-eureka-server"
         IMAGE_TAG = "v1.1"
         NAMESPACE = "under76-test"
         JAVA_HOME = "/usr/local/java21"
@@ -41,7 +41,7 @@ pipeline {
         stage('Make Deployment and Service') {
             steps {
                 script {
-                    sh "kubectl apply -f yaml/start.yaml"
+                    sh "kubectl apply -f yaml/demo-server.yaml"
                 }
             }
         }
@@ -49,7 +49,7 @@ pipeline {
             steps {
                 script {
                     // Kubenetes에서 특정 Deployment의 컨테이너 이미지를 업데이트 (아래 이름은 중복되지 않게 주의하여 지정, deployment, selector 이름으로)
-                    sh "kubectl set image deployment/team6-eureka-server team6-eureka-server=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --namespace=${NAMESPACE}"
+                    sh "kubectl set image deployment/team5-eureka-server team5-eureka-serverr=${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} --namespace=${NAMESPACE}"
                 }
             }
         }
