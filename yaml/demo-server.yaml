@@ -16,22 +16,22 @@ spec:
     spec:
       containers:
       - name: team5-eureka-server
-        image: k8s-vga-worker1:5000/demo-img-team5-server:latest
+        image: k8s-vga-worker1:5000/img-team5-eureka-server:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8761
+        - containerPort: 8296
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: team6-eureka-server
-  namespace: group1-team6
+  name: team5-eureka-server
+  namespace: under76-test
 spec:
   selector:
-    app: team6-eureka-server
+    app: team5-eureka-server
   ports:
     - protocol: TCP
-      port: 8761
-      targetPort: 8761
-      nodePort: 30612
+      port: 8296
+      targetPort: 8296
+      nodePort: 30512
   type: NodePort
